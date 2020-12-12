@@ -9,10 +9,10 @@ module.exports = (sequelize, DataTypes) => {
         args: true,
         message: "Sorry This Username is Used",
       },
-      password: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
+    },
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false,
     },
   });
 

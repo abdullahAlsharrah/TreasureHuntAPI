@@ -2,15 +2,22 @@ const express = require("express");
 const db = require("./db/models");
 const cors = require("cors");
 const thingRoutes = require("./api/things/routes");
+const userRouter = require("./api/users/routes");
+const passport = require("passport");
+const { localStrategy, jwtStrategy } = require("./middleware/passport");
 
 const app = express();
 
 // Middleware
 app.use(cors());
 app.use(express.json());
+app.use(passport.initialize());
+passport.use(localStrategy);
+passport.use(jwtStrategy);
 
 // Routes
 app.use("/things", thingRoutes);
+app.use(userRouter);
 
 // NOT FOUND PATH MIDDLEWARE
 app.use((req, res, next) => {
